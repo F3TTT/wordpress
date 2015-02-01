@@ -1,3 +1,11 @@
+SETUP
+======
+
+1.  Set up your local hosts file like this
+```
+192.168.0.70    wordpress.localdomain.com
+```
+
 ISSUES
 =====
 
