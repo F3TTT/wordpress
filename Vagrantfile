@@ -16,6 +16,7 @@ Vagrant.configure(2) do |config|
 
    config.vm.define "wordpress" do |wordpress|
      wordpress.vm.box = "chef/centos-6.5"
+     wordpress.vm.hostname= "wordpress.localdomain"
      wordpress.vm.provision :shell, path: "bootstrap.sh"
      wordpress.vm.provider :virtualbox do |v, override|
        override.vm.network :private_network, ip: "192.168.0.70"
