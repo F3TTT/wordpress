@@ -14,15 +14,48 @@ Vagrant.configure(2) do |config|
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
 
+   config.vm.define "puppetmaster" do |puppetmaster|
+     puppetmaster.vm.box = "puppetlabs/centos-6.5-64-nocm"
+     puppetmaster.vm.hostname= "puppetmaster.heartofamericait.com"
+     puppetmaster.vm.synced_folder "puppet/modules", "/etc/puppet/modules"
+     puppetmaster.vm.synced_folder "puppet/manifests", "/etc/puppet/manifests"
+     puppetmaster.vm.synced_folder "puppet/", "/home/vagrant/puppet"
+
+     puppetmaster.vm.provider :virtualbox do |v, override|
+       override.vm.network :private_network, ip: "192.168.0.6"
+       # Use the host's DNS resolver
+       v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+       v.customize ["modifyvm", :id, "--memory", "2048"]
+       v.customize ["modifyvm", :id, "--cpus", "2"]
+     end
+
+    if defined? VagrantPlugins::HostsUpdater
+      puppetmaster.hostsupdater.aliases = ["#{puppetmaster.vm.hostname}.dev"]
+    end
+
+    puppetmaster.vm.provision :shell, :path => "shell/linux/puppetInstallPuppetmaster.sh"
+    puppetmaster.vm.provision :shell, :inline => 'echo "192.168.0.6  puppetmaster.heartofamericait.com puppetmaster" >> /etc/hosts
+'
+    end
+
+
+
    config.vm.define "wordpress" do |wordpress|
      wordpress.vm.box = "chef/centos-6.5"
      wordpress.vm.hostname= "wordpress.localdomain"
-     wordpress.vm.provision :shell, path: "bootstrap.sh"
+#     wordpress.vm.provision :shell, path: "bootstrap.sh"
      wordpress.vm.provider :virtualbox do |v, override|
        override.vm.network :private_network, ip: "192.168.0.70"
        # Use the host's DNS resolver
        v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
      end
+     if defined? VagrantPlugins::HostsUpdater
+       wordpress.hostsupdater.aliases = ["#{wordpress.vm.hostname}.dev"]
+     end
+
+     wordpress.vm.provision :shell, :path => "shell/linux/puppetInstallWordpress.sh"
+     wordpress.vm.provision :shell, :inline => 'echo "192.168.0.70  wordpress.heartofamericait.com wordpress" >> /etc/hosts
+'
    end
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
