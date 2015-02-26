@@ -56,6 +56,6 @@ sudo puppet module install hunner/wordpress
 
 
 # add wordpress definition in sites.pp
-sudo echo 'node `'wordpress.heartofamericait.com`' { ' >> /etc/puppet/manifests/site.pp
+sudo echo 'node "wordpress.heartofamericait.com" { ' >> /etc/puppet/manifests/site.pp
 sudo echo '  include wordpress' >> /etc/puppet/manifests/site.pp
 sudo echo '}' >> /etc/puppet/manifests/site.pp

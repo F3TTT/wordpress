@@ -8,6 +8,9 @@ sudo hostname wordpress.heartofamericait.com
 sudo service network restart
 
 # ensure the date/time is synced
+sudo /usr/sbin/ntpdate us.pool.ntp.org
+
+# ensure the date/time is synced
 sudo ntpdate us.pool.ntp.org
 
 # shut down firewall permanently
