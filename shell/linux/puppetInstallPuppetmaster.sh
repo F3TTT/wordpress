@@ -52,7 +52,8 @@ sudo service puppetmaster restart
 #sudo gem install puppet-module
 
 # add puppetforge module
-sudo puppet module install hunner/wordpress puppetlabs-apache
+sudo puppet module install hunner/wordpress 
+sudo puppet module install puppetlabs-apache
 
 
 # add wordpress definition in sites.pp
