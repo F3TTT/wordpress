@@ -54,10 +54,3 @@ sudo service puppetmaster restart
 # add puppetforge module
 sudo puppet module install hunner/wordpress 
 sudo puppet module install puppetlabs-apache
-sudo puppet module install puppetlabs-mysql
-
-
-# add wordpress definition in sites.pp
-#sudo echo 'node "wordpress.heartofamericait.com" { ' >> /etc/puppet/manifests/site.pp
-#sudo echo '  include wordpress' >> /etc/puppet/manifests/site.pp
-#sudo echo '}' >> /etc/puppet/manifests/site.pp
