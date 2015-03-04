@@ -17,8 +17,8 @@ Vagrant.configure(2) do |config|
    config.vm.define "puppetmaster" do |puppetmaster|
      puppetmaster.vm.box = "puppetlabs/centos-6.5-64-nocm"
      puppetmaster.vm.hostname= "puppetmaster.heartofamericait.com"
-     puppetmaster.vm.synced_folder "puppet/manifests", "/etc/puppet/manifests"
-     puppetmaster.vm.synced_folder "puppet/", "/home/vagrant/puppet"
+#     puppetmaster.vm.synced_folder "puppet/manifests", "/etc/puppet/manifests"
+     puppetmaster.vm.synced_folder "puppet/", "/tmp/puppet"
 
      puppetmaster.vm.provider :virtualbox do |v, override|
        override.vm.network :private_network, ip: "192.168.0.6"
@@ -40,8 +40,8 @@ Vagrant.configure(2) do |config|
 
 
    config.vm.define "wordpress" do |wordpress|
-     wordpress.vm.box = "chef/centos-6.5"
-     wordpress.vm.hostname= "wordpress.localdomain"
+     wordpress.vm.box = "puppetlabs/centos-6.5-64-nocm"
+     wordpress.vm.hostname= "wordpress.heartofamericait.com"
 #     wordpress.vm.provision :shell, path: "bootstrap.sh"
      wordpress.vm.provider :virtualbox do |v, override|
        override.vm.network :private_network, ip: "192.168.0.70"
