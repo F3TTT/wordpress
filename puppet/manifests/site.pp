@@ -3,6 +3,6 @@ node "wordpress.heartofamericait.com" {
   include '::mysql::server'
 
   class { 'wordpress':
-    install_url => 'http://www.wordpress.org/wordpress-3.8.tar.gz',
+    install_url => 'http://www.wordpress.org/',
   }
 }
