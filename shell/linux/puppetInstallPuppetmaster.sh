@@ -32,7 +32,7 @@ sudo service puppet stop
 sudo service puppetmaster stop
 
 #move puppet.conf into place
-sudo cp /home/vagrant/puppet/puppet.conf /etc/puppet/puppet.conf
+sudo cp /tmp/puppet/manifests/site.pp /etc/puppet/manifests/
 
 #start puppetmaster
 sudo service puppetmaster start
@@ -52,10 +52,10 @@ sudo service puppetmaster restart
 #sudo gem install puppet-module
 
 # add puppetforge module
-sudo puppet module install hunner/wordpress
+sudo puppet module install hunner/wordpress puppetlabs-apache
 
 
 # add wordpress definition in sites.pp
-sudo echo 'node "wordpress.heartofamericait.com" { ' >> /etc/puppet/manifests/site.pp
-sudo echo '  include wordpress' >> /etc/puppet/manifests/site.pp
-sudo echo '}' >> /etc/puppet/manifests/site.pp
+#sudo echo 'node "wordpress.heartofamericait.com" { ' >> /etc/puppet/manifests/site.pp
+#sudo echo '  include wordpress' >> /etc/puppet/manifests/site.pp
+#sudo echo '}' >> /etc/puppet/manifests/site.pp
