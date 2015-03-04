@@ -2,16 +2,11 @@
 # http://docs.puppetlabs.com/guides/installation.html#red-hat-enterprise-linux-and-derivatives
 sudo rpm -ivh http://yum.puppetlabs.com/puppetlabs-release-el-6.noarch.rpm
 
-# Set the hostname to puppet
-# sudo vim /etc/sysconfig/network
-sudo hostname wordpress.heartofamericait.com
-sudo service network restart
-
-# ensure the date/time is synced
-sudo /usr/sbin/ntpdate us.pool.ntp.org
-
 # ensure the date/time is synced
 sudo ntpdate us.pool.ntp.org
+
+# Set up NTPD
+sudo service ntpd start
 
 # shut down firewall permanently
 sudo service iptables save
@@ -32,11 +27,11 @@ sudo sed -i 's/server =/    server =/' /etc/puppet/puppet.conf
 sudo sed -i '/localconfig =/a      runinterval = 120' /etc/puppet/puppet.conf
 sudo sed -i '/localconfig =/a      debug = true' /etc/puppet/puppet.conf
 
-# http://docs.puppetlabs.com/guides/installation.html#post-install
-sudo puppet resource service puppet ensure=running enable=true
-
 # Request cert 
 sudo puppet agent --waitforcert 60 --test 
+
+# http://docs.puppetlabs.com/guides/installation.html#post-install
+sudo puppet resource service puppet ensure=running enable=true
 
 # set vagrant password
 usermod -p "paX5EmO4EXy0I" vagrant
