@@ -17,7 +17,6 @@ Vagrant.configure(2) do |config|
    config.vm.define "puppetmaster" do |puppetmaster|
      puppetmaster.vm.box = "puppetlabs/centos-6.5-64-nocm"
      puppetmaster.vm.hostname= "puppetmaster.heartofamericait.com"
-     puppetmaster.vm.synced_folder "puppet/modules", "/etc/puppet/modules"
      puppetmaster.vm.synced_folder "puppet/manifests", "/etc/puppet/manifests"
      puppetmaster.vm.synced_folder "puppet/", "/home/vagrant/puppet"
 
