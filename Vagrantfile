@@ -15,7 +15,7 @@ Vagrant.configure(2) do |config|
   # boxes at https://atlas.hashicorp.com/search.
 
    config.vm.define "puppetmaster" do |puppetmaster|
-     puppetmaster.vm.box = "puppetlabs/centos-6.5-64-nocm"
+     puppetmaster.vm.box = "puppetlabs/centos-6.6-64-nocm"
      puppetmaster.vm.hostname= "puppetmaster.heartofamericait.com"
 #     puppetmaster.vm.synced_folder "puppet/manifests", "/etc/puppet/manifests"
      puppetmaster.vm.synced_folder "puppet/", "/tmp/puppet"
@@ -40,7 +40,7 @@ Vagrant.configure(2) do |config|
 
 
    config.vm.define "wordpress" do |wordpress|
-     wordpress.vm.box = "puppetlabs/centos-6.5-64-nocm"
+     wordpress.vm.box = "puppetlabs/centos-6.6-64-nocm"
      wordpress.vm.hostname= "wordpress.heartofamericait.com"
 #     wordpress.vm.provision :shell, path: "bootstrap.sh"
      wordpress.vm.provider :virtualbox do |v, override|
