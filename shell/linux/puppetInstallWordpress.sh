@@ -17,6 +17,7 @@ sudo chkconfig iptables off
 # http://docs.puppetlabs.com/guides/puppetlabs_package_repositories.html#for-red-hat-enterprise-linux-and-derivatives
 sudo yum -y install puppetlabs-release
 sudo yum -y install puppet
+sudo yum -y update wget
 
 # Add puppetmaster to hosts file
 sudo echo "192.168.0.6     puppetmaster.heartofamericait.com puppetmaster" >> /etc/hosts
